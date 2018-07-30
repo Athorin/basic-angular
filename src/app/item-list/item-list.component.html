@@ -1,0 +1,32 @@
+
+<div  class="container">
+  <div class="row" >
+      <div class="col-sm-3" *ngFor="let Item of myItems">
+          
+        <div class="card" [class.bg-primary]="Item.selected" style="width: 18rem;" >
+      
+          <img class="card-img-top" [src]="Item.image">
+          <div class="card-body">
+              <h5 class="card-title">{{Item.name | uppercase}}  {{Item.price | currency:'EUR'}}</h5>
+
+              <p class="card-text">{{Item.description}}</p>
+
+              <div class="container">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend" id="button-addon3">
+                      <button *ngIf="0 < getAmount(Item)" class="btn btn-outline-secondary" type="button" (click)="lessItems(Item)">-</button>
+                    </div>
+                    <input type="text" class="form-control" [placeholder]="getAmount(Item)" aria-label="Example text with two button addons" aria-describedby="button-addon3">
+                    <div class="input-group-append">
+                        <button *ngIf="0 < Item.stock" class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="moreItems(Item)">+</button>
+                      </div>
+                  </div>
+
+                <button type="button" href="#" class="btn btn-success" [class.btn-danger]="getAmount(Item) == 0"  [disabled]="getAmount(Item) == 0">Comprar</button>
+              </div>
+            </div>
+        </div>
+
+      </div>
+  </div>
+</div>
